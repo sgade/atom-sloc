@@ -12,7 +12,7 @@ class SlocView extends View
     @subscribe atom.workspaceView.statusBar, 'active-buffer-changed', @update
     atom.workspaceView.statusBar.subscribeToBuffer 'saved modified-status-changed', @update
     
-  afterAttack: ->
+  afterAttach: ->
     @update()
 
   # Tear down any state and detach
