@@ -31,7 +31,6 @@ class SlocView extends View
     
     stats = sloc content, language
     
-    console.log stats
     stats
     
   getCurrentEditor: ->
