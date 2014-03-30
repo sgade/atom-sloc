@@ -7,7 +7,7 @@ class SlocView extends View
   
   @content: ->
     @div class: 'sloc overlay from-top', =>
-      @div "Sloc Stats", class: "message", =>
+      @div class: "message", =>
         @div outlet: "viewSloc"
 
   initialize: (serializeState) ->
