@@ -1,5 +1,22 @@
 # sloc package
 
-A short description of your package.
+Counts the number of lines in the current file and displays them in the statusbar.
 
-![A screenshot of your spankin' package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+![Sloc screenshot](https://raw.githubusercontent.com/sgade/atom-sloc/master/assets/screen.png)
+
+This package relies on the [sloc](https://www.npmjs.org/package/sloc) package and therefore supports only languages supported by that package.
+
+Currently, these include:
+- CoffeeScript
+- C/C++
+- CSS, SCSS
+- Go
+- HTML
+- Java
+- JavaScript
+- Python
+- PHP
+
+# License
+
+MIT
