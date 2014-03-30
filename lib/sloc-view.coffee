@@ -23,8 +23,11 @@ class SlocView extends View
     @detach()
 
   update: ->
-    @status = @getSlocInfo()
-    @allSloc.text "Loc: " + @status?.loc + "\tSloc: " + @status?.sloc + "\tCLoc: " + @status?.cloc
+    status = @getSlocInfo()
+    if status
+      @allSloc.text "Loc: " + status?.loc + "\tSloc: " + status?.sloc + "\tCLoc: " + status?.cloc
+    else
+      @allSloc.text ""
       
   getSlocInfo: ->
     editor = @getCurrentEditor()
