@@ -1,4 +1,4 @@
-# sloc package
+# atom-sloc
 
 Counts the number of lines in the current file and displays them in the statusbar.
 
