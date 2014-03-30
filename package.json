@@ -3,7 +3,6 @@
   "main": "./lib/sloc",
   "version": "0.0.0",
   "description": "Counts the number of lines of code in the file.",
-  "activationEvents": [ "sloc:toggle" ],
   "repository": "https://github.com/sgade/atom-sloc",
   "license": "MIT",
   "engines": {

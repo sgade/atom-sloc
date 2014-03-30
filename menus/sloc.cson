@@ -6,8 +6,8 @@
       'label': 'Sloc'
       'submenu': [
         {
-          'label': 'Toggle',
-          'command': 'sloc:show'
+          'label': 'Update',
+          'command': 'sloc:update'
         }
       ]
     ]

@@ -1,13 +1,17 @@
 SlocView = require './sloc-view'
 
 module.exports =
-  slocView: null
-
-  activate: (state) ->
-    @slocView = new SlocView(state.slocViewState)
+  activate: ->
+    
+    createView = =>
+      @slocView = new SlocView()
+      atom.workspaceView.statusBar?.appendLeft @slocView
+    
+    if atom.workspaceView.statusBar
+      createView()
+    else
+      atom.packages.once 'activated', ->
+        createView()
 
   deactivate: ->
-    @slocView.destroy()
-
-  serialize: ->
-    slocViewState: @slocView.serialize()
+    @slocView?.destroy()

@@ -3,37 +3,27 @@ sloc = require 'sloc'
 
 module.exports =
 class SlocView extends View
-  @status = {}
-  
   @content: ->
-    @div class: 'sloc overlay from-top', =>
-      @div class: "message", =>
-        @div outlet: "viewSloc"
+    @div class: 'sloc inline-block', =>
+      @span class: 'all', outlet: 'allSloc'
 
-  initialize: (serializeState) ->
-    atom.workspaceView.command "sloc:toggle", => @toggle()
-    @setSloc()
-
-  # Returns an object that can be retrieved when package is activated
-  serialize: ->
-    @status
+  initialize: ->
+    atom.workspaceView.command "sloc:update", => @update()
+    @subscribe atom.workspaceView.statusBar, 'active-buffer-changed', @update
+    atom.workspaceView.statusBar.subscribeToBuffer 'saved modified-status-changed', @update
+    
+  afterAttack: ->
+    @update()
 
   # Tear down any state and detach
   destroy: ->
     @detach()
 
-  toggle: ->
-    if !@hasParent()
-      @setSloc()
-      atom.workspaceView.append(this)
-    else
-      @destroy()
+  update: ->
+    @status = @getSlocInfo?()
+    @allSloc?.text "Loc: " + @status?.loc + "\tSloc: " + @status?.sloc + "\tCLoc: " + @status?.cloc
       
-  setSloc: ->
-    @status = @getSloc()
-    @viewSloc.text "Loc: " + @status?.loc + "\tSloc: " + @status?.sloc + "\tCLoc: " + @status?.cloc
-      
-  getSloc: ->
+  getSlocInfo: ->
     editor = @getCurrentEditor()
     
     content = editor.editor.buffer.lines.join('\n');
