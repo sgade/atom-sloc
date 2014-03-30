@@ -3,9 +3,12 @@
   {
     'label': 'Packages'
     'submenu': [
-      'label': 'sloc'
+      'label': 'Sloc'
       'submenu': [
-        { 'label': 'Toggle', 'command': 'sloc:toggle' }
+        {
+          'label': 'Toggle',
+          'command': 'sloc:show'
+        }
       ]
     ]
   }
