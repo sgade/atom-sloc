@@ -9,6 +9,6 @@
     "atom": ">0.50.0"
   },
   "dependencies": {
-    "sloc": "git://github.com/sgade/sloc.git#master"
+    "sloc": "~0.0.8"
   }
 }
