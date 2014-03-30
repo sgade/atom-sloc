@@ -8,10 +8,17 @@ class SlocView extends View
       @span class: 'all', outlet: 'allSloc'
 
   initialize: ->
+    @supportedLanguages = [ "coffeescript", "c", "c++", "css", "scss", "go", "html", "java", "javascript", "python", "php" ]
+    
     statusBar = atom.workspaceView.statusBar
-    atom.workspaceView.command "sloc:update", => @update()
-    @subscribe statusBar, 'active-buffer-changed', => @update()
-    statusBar.subscribeToBuffer 'saved modified-status-changed', => @update()
+    atom.workspaceView.command "sloc:update", =>
+      @update()
+    @subscribe atom.workspaceView, 'editor:grammar-changed', =>
+      @update()
+    @subscribe statusBar, 'active-buffer-changed', =>
+      @update()
+    statusBar.subscribeToBuffer 'saved modified-status-changed', =>
+      @update()
     
   # Update after load
   afterAttach: ->
@@ -32,10 +39,10 @@ class SlocView extends View
   getSlocInfo: ->
     editor = @getCurrentEditor()
     
-    content = editor.editor.buffer.lines.join('\n');
-    language = "coffeescript"
-    
     stats = sloc content, language
+    content = editor.buffer.lines.join('\n');
+    if @isLanguageSupported language
+      stats
     
     stats
     
@@ -43,5 +50,5 @@ class SlocView extends View
     editorArray = atom.workspaceView.getEditorViews().filter( (editor) ->
       editor.active
     )
-    editorArray[0]
+    editorArray[0].editor
     
