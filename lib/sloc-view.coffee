@@ -32,7 +32,7 @@ class SlocView extends View
   update: ->
     status = @getSlocInfo()
     if status
-      @allSloc.text "Loc: " + status?.loc + "\tSloc: " + status?.sloc + "\tCLoc: " + status?.cloc
+      @allSloc.text "Lines: " + status?.loc + "\tSource: " + status?.sloc + "\tComments: " + status?.cloc + "\tEmpty: " + status?.nloc
       @allSloc.show()
     else
       @allSloc.hide()
