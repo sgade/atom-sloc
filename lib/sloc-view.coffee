@@ -8,20 +8,23 @@ class SlocView extends View
       @span class: 'all', outlet: 'allSloc'
 
   initialize: ->
+    statusBar = atom.workspaceView.statusBar
     atom.workspaceView.command "sloc:update", => @update()
-    @subscribe atom.workspaceView.statusBar, 'active-buffer-changed', @update
-    atom.workspaceView.statusBar.subscribeToBuffer 'saved modified-status-changed', @update
+    @subscribe statusBar, 'active-buffer-changed', => @update()
+    statusBar.subscribeToBuffer 'saved modified-status-changed', => @update()
     
+  # Update after load
   afterAttach: ->
     @update()
 
   # Tear down any state and detach
   destroy: ->
+    @unsubscribe()
     @detach()
 
   update: ->
-    @status = @getSlocInfo?()
-    @allSloc?.text "Loc: " + @status?.loc + "\tSloc: " + @status?.sloc + "\tCLoc: " + @status?.cloc
+    @status = @getSlocInfo()
+    @allSloc.text "Loc: " + @status?.loc + "\tSloc: " + @status?.sloc + "\tCLoc: " + @status?.cloc
       
   getSlocInfo: ->
     editor = @getCurrentEditor()
