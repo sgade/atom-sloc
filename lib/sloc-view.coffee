@@ -33,18 +33,25 @@ class SlocView extends View
     status = @getSlocInfo()
     if status
       @allSloc.text "Loc: " + status?.loc + "\tSloc: " + status?.sloc + "\tCLoc: " + status?.cloc
+      @allSloc.show()
     else
-      @allSloc.text ""
+      @allSloc.hide()
       
   getSlocInfo: ->
     editor = @getCurrentEditor()
     
-    stats = sloc content, language
     content = editor.buffer.lines.join('\n');
+    language = editor.getGrammar().name.toLowerCase();
     if @isLanguageSupported language
-      stats
+      sloc content, language
     
-    stats
+  isLanguageSupported: (lang) ->
+    matches = @supportedLanguages.filter (sLang) ->
+      true if sLang is lang
+    if matches?.length > 0
+      true
+    else
+      false
     
   getCurrentEditor: ->
     editorArray = atom.workspaceView.getEditorViews().filter( (editor) ->
