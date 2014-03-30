@@ -12,7 +12,7 @@ class SlocView extends View
 
   initialize: (serializeState) ->
     atom.workspaceView.command "sloc:toggle", => @toggle()
-    @status = @getSloc
+    @setSloc()
 
   # Returns an object that can be retrieved when package is activated
   serialize: ->
@@ -24,11 +24,14 @@ class SlocView extends View
 
   toggle: ->
     if !@hasParent()
-      @status = @getSloc()
-      @viewSloc.text "Loc: " + @status?.loc + "\tSloc: " + @status?.sloc + "\tCLoc: " + @status?.cloc
+      @setSloc()
       atom.workspaceView.append(this)
     else
       @destroy()
+      
+  setSloc: ->
+    @status = @getSloc()
+    @viewSloc.text "Loc: " + @status?.loc + "\tSloc: " + @status?.sloc + "\tCLoc: " + @status?.cloc
       
   getSloc: ->
     editor = @getCurrentEditor()
