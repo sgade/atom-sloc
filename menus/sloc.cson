@@ -1,0 +1,16 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  '.overlayer':
+      'Enable sloc': 'sloc:toggle'
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'sloc'
+      'submenu': [
+        { 'label': 'Toggle', 'command': 'sloc:toggle' }
+      ]
+    ]
+  }
+]

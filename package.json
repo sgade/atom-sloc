@@ -1,0 +1,15 @@
+{
+  "name": "sloc",
+  "main": "./lib/sloc",
+  "version": "0.0.0",
+  "description": "Counts the number of lines of code in the file.",
+  "activationEvents": ["sloc:toggle"],
+  "repository": "https://github.com/atom/sloc",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+    "sloc": "~0.0.7"
+  }
+}
