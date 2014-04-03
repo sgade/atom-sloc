@@ -39,6 +39,8 @@ class SlocView extends View
       
   getSlocInfo: ->
     editor = @getCurrentEditor()
+    if not editor
+      return
     
     content = editor.buffer.lines.join('\n');
     language = editor.getGrammar().name.toLowerCase();
@@ -57,5 +59,6 @@ class SlocView extends View
     editorArray = atom.workspaceView.getEditorViews().filter( (editor) ->
       editor.active
     )
-    editorArray[0].editor
+    if editorArray.length > 0
+      editorArray[0].editor
     
