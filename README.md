@@ -1,4 +1,4 @@
-# atom-sloc
+# atom-sloc [![Build Status](https://travis-ci.org/sgade/atom-sloc.svg?branch=master)](https://travis-ci.org/sgade/atom-sloc)
 
 Counts the number of lines in the current file and displays them in the statusbar.
 
