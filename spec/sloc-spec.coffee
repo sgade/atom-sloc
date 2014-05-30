@@ -9,21 +9,7 @@ describe "Sloc", ->
   activationPromise = null
 
   beforeEach ->
-    atom.workspaceView = new WorkspaceView
-    activationPromise = atom.packages.activatePackage('sloc')
+    
 
   describe "when the sloc:toggle event is triggered", ->
-    it "attaches and then detaches the view", ->
-      expect(atom.workspaceView.find('.sloc')).not.toExist()
-
-      # This is an activation event, triggering it will cause the package to be
-      # activated.
-      atom.workspaceView.trigger 'sloc:toggle'
-
-      waitsForPromise ->
-        activationPromise
-
-      runs ->
-        expect(atom.workspaceView.find('.sloc')).toExist()
-        atom.workspaceView.trigger 'sloc:toggle'
-        expect(atom.workspaceView.find('.sloc')).not.toExist()
+    
