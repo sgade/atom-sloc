@@ -8,7 +8,7 @@ class SlocView extends View
       @span class: 'all', outlet: 'allSloc'
 
   initialize: ->
-    @supportedLanguages = [ "coffeescript", "c", "c++", "css", "scss", "go", "html", "java", "javascript", "python", "php" ]
+    @supportedLanguages = [ "coffeescript", "c", "c++", "css", "scss", "go", "html", "java", "javascript", "python", "php", "closure", "erlang", "swift", "lua", "ruby" ]
     
     statusBar = atom.workspaceView.statusBar
     atom.workspaceView.command "sloc:update", =>
