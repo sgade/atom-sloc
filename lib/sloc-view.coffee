@@ -44,8 +44,15 @@ class SlocView extends View
     
     content = editor.buffer.lines.join('\n');
     language = editor.getGrammar().name.toLowerCase();
+    language = @transformLanguage language
+    
     if @isLanguageSupported language
       sloc content, language
+      
+  transformLanguage: (lang) ->
+    if lang == 'c++'
+      return 'cpp'
+    return lang
     
   isLanguageSupported: (lang) ->
     matches = @supportedLanguages.filter (sLang) ->
