@@ -1,14 +1,26 @@
 {
   "name": "sloc",
   "main": "./lib/sloc",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "description": "Counts the number of lines of code in the file.",
-  "repository": "https://github.com/sgade/atom-sloc",
+  "keywords": [
+  ],
+  "activationCommands": {
+    "atom-workspace": "sloc:toggle"
+  },
+  "repository": "https://github.com/sgade/sloc",
   "license": "MIT",
   "engines": {
-    "atom": ">0.50.0"
+    "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
     "sloc": "~0.0.8"
+  },
+  "consumedServices": {
+    "status-bar": {
+      "versions": {
+        "^1.0.0": "consumeStatusBar"
+      }
+    }
   }
 }

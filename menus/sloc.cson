@@ -1,4 +1,4 @@
-# See https://atom.io/docs/latest/creating-a-package#menus for more details
+# See https://atom.io/docs/latest/hacking-atom-package-word-count#menus for more details
 'menu': [
   {
     'label': 'Packages'
@@ -6,8 +6,8 @@
       'label': 'Sloc'
       'submenu': [
         {
-          'label': 'Update',
-          'command': 'sloc:update'
+          'label': 'Toggle'
+          'command': 'sloc:toggle'
         }
       ]
     ]
