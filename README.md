@@ -2,6 +2,8 @@
 
 Counts the number of lines in the current file and displays them in the statusbar.
 
+**Activate with CTRL+ALT+L.**
+
 ![Sloc screenshot](https://raw.githubusercontent.com/sgade/atom-sloc/master/assets/screen.png)
 
 This package relies on the [sloc](https://www.npmjs.org/package/sloc) package and therefore supports only languages supported by that package.
