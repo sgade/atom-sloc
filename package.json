@@ -13,7 +13,7 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
-    "sloc": "~0.0.8"
+    "sloc": "~0.1.10"
   },
   "consumedServices": {
     "status-bar": {
