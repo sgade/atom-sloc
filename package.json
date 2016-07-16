@@ -1,7 +1,7 @@
 {
   "name": "sloc",
   "main": "./lib/sloc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Counts the number of lines of code in the file.",
   "keywords": [],
   "activationCommands": {
@@ -13,7 +13,7 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
-    "sloc": "~0.0.8"
+    "sloc": "~0.1.10"
   },
   "consumedServices": {
     "status-bar": {
