@@ -3,8 +3,6 @@ SlocView = require './sloc-view'
 sloc = require 'sloc'
 
 module.exports = Sloc =
-  supportedLanguages: [ "coffeescript", "c", "css", "scss", "go", "html", "java", "javascript", "python", "php", "closure", "erlang", "swift", "lua", "ruby" ]
-
   slocView: null
   subscriptions: null
   
@@ -45,27 +43,25 @@ module.exports = Sloc =
       
   update: ->
     editor = atom.workspace.getActiveTextEditor()
-    console.log "editor", editor
     if not editor
       return
     
     content = editor.getBuffer().getLines().join('\n')
-    console.log "content", content
     language = editor.getGrammar().name.toLowerCase()
     language = @checkLanguage language
-    console.log "language", language
     
-    console.log "language supported", @isLanguageSupported language
-    if @isLanguageSupported language
+    try
       info = sloc content, language
+      console.log info
       @slocView.setSlocInfo info
-    
+    catch e
+      if e instanceof TypeError
+        # unsupported language probably
+        @slocView.setSlocInfo null
+      else
+        throw e
+        
   checkLanguage: (lang) ->
     if lang == 'c++' || lang == 'cpp'
       return 'c' # C++ seems to be handled as C
     return lang
-    
-  isLanguageSupported: (lang) ->
-    matches = @supportedLanguages.filter (sLang) ->
-      true if sLang is lang
-    return ( matches?.length > 0 )
