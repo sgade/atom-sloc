@@ -26,7 +26,7 @@ class SlocView
   setSlocInfo: (status) ->
     text = null
     if status
-      text = "Lines: " + status?.loc + "\tSource: " + status?.sloc + "\tComments: " + status?.cloc + "\tEmpty: " + status?.nloc
+      text = "Lines: " + status?.total + "\tSource: " + status?.source + "\tComments: " + status?.comment + "\tEmpty: " + status?.empty
     else
       text = "Sloc unavailable"
     @message.textContent = text
