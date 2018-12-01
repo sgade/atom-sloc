@@ -5,7 +5,6 @@ sloc = require 'sloc'
 module.exports = Sloc =
   slocView: null
   subscriptions: null
-
   statusBar: null
 
   activate: (state) ->
