@@ -16,9 +16,8 @@ module.exports = Sloc =
     # Register command that toggles this view
     @subscriptions.add atom.commands.add 'atom-workspace', 'sloc:toggle': => @toggle()
     
-    @subscriptions.add atom.workspace.observeTextEditors (editor) =>
-      @subscriptions.add editor.onDidStopChanging =>
-        @update()
+    @subscriptions.add atom.workspace.onDidChangeActiveTextEditor =>
+      @update()
     
   consumeStatusBar: (statusBar) ->
     @statusBar = statusBar
