@@ -28,5 +28,5 @@ class SlocView
     if status
       text = "Lines: " + status?.total + "\tSource: " + status?.source + "\tComments: " + status?.comment + "\tEmpty: " + status?.empty
     else
-      text = "Sloc unavailable"
+      text = atom.config.get('sloc.unavailableMessage')
     @message.textContent = text

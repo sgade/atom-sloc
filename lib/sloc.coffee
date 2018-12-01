@@ -5,7 +5,6 @@ sloc = require 'sloc'
 module.exports = Sloc =
   slocView: null
   subscriptions: null
-
   statusBar: null
 
   activate: (state) ->
@@ -51,6 +50,7 @@ module.exports = Sloc =
   update: ->
     editor = atom.workspace.getActiveTextEditor()
     if not editor
+      @slocView.setSlocInfo null
       return
 
     content = editor.getBuffer().getLines().join('\n')
