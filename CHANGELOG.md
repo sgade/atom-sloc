@@ -1,3 +1,8 @@
+## 1.1.2
+
+* Custom unavailable message
+* Fix showing sloc after last buffer was closed
+
 ## 1.1.1
 * Update when changing buffer
 * GNU GPLv3 license
