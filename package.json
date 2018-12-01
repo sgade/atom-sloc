@@ -18,5 +18,13 @@
         "^1.0.0": "consumeStatusBar"
       }
     }
+  },
+  "configSchema": {
+    "unavailableMessage": {
+      "title": "Sloc unavailable message",
+      "description": "This is the message which will be displayed when Sloc does not support a language",
+      "type": "string",
+      "default": ""
+    }
   }
 }
