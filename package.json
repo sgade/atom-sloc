@@ -1,7 +1,7 @@
 {
   "name": "sloc",
   "main": "./lib/sloc",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Counts the number of lines of code in the file.",
   "keywords": [],
   "repository": "https://github.com/sgade/sloc",
