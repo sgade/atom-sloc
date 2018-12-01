@@ -5,7 +5,7 @@ sloc = require 'sloc'
 module.exports = Sloc =
   slocView: null
   subscriptions: null
-  
+
   statusBar: null
 
   activate: (state) ->
@@ -13,12 +13,20 @@ module.exports = Sloc =
 
     # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     @subscriptions = new CompositeDisposable
-    # Register command that toggles this view
-    @subscriptions.add atom.commands.add 'atom-workspace', 'sloc:toggle': => @toggle()
     
+    # Register command that toggles this view
+    @subscriptions.add atom.commands.add 'atom-workspace', 'sloc:toggle': => 
+      @toggle()
+
+    # Updating when the current buffer changes
+    @subscriptions.add atom.workspace.observeTextEditors (editor) =>
+      @subscriptions.add editor.onDidStopChanging =>
+        @update()
+
+    # Updating when switching buffers
     @subscriptions.add atom.workspace.onDidChangeActiveTextEditor =>
       @update()
-    
+
   consumeStatusBar: (statusBar) ->
     @statusBar = statusBar
     @statusBarTile = statusBar.addLeftTile(item: @slocView.getElement(), priority: 100)
@@ -39,16 +47,16 @@ module.exports = Sloc =
       @statusBarTile.destroy()
     else
       @consumeStatusBar(@statusBar)
-      
+
   update: ->
     editor = atom.workspace.getActiveTextEditor()
     if not editor
       return
-    
+
     content = editor.getBuffer().getLines().join('\n')
     language = editor.getGrammar().name.toLowerCase()
     language = @checkLanguage language
-    
+
     try
       info = sloc content, language
       console.log info
@@ -59,7 +67,7 @@ module.exports = Sloc =
         @slocView.setSlocInfo null
       else
         throw e
-        
+
   checkLanguage: (lang) ->
     if lang == 'c++' || lang == 'cpp'
       return 'c' # C++ seems to be handled as C
