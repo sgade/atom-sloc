@@ -51,6 +51,7 @@ module.exports = Sloc =
   update: ->
     editor = atom.workspace.getActiveTextEditor()
     if not editor
+      @slocView.setSlocInfo null
       return
 
     content = editor.getBuffer().getLines().join('\n')
